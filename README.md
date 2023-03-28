@@ -32,7 +32,7 @@ Replace "your-username" with your GitHub username.
 2. Navigate to the project directory in the terminal using the cd command:
 
 ```bash
-cd louise-raffray
+cd WebsitePractice
 ```
 
 3. Open the index.html file in a web browser to view the website.
