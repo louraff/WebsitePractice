@@ -24,7 +24,8 @@ To run the Louise Raffray website on your local machine, you can follow these st
 
 1. Clone the repository to your local machine using Git. You can do this by opening a terminal and running the following command:
 ```bash
-git clone https://github.com/your-username/louise-raffray.git
+git clone 
+https://github.com/louraff/WebsitePractice.git
 ```
 Replace "your-username" with your GitHub username.
 
