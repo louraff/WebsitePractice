@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<head>
+
+  <script src="/assets/jquery.js"></script> <!--This is where you link the jQuery library. You need to put it in <scipt></script> tag-->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap" rel="stylesheet">
+  <!--This is a spcial font we grabbed from Google. Google supplies the font link (see above code) which we paste inbetween <head> and <style> We then copy the 'CSS rules to specify families' which Google also provides to specify the font we want to change. See <h1>-->
+<style>
+h1 {
+  font-family: 'Londrina Shadow', cursive;  
+  font-size: 75px;
+  text-align: center; /*centers the text*/
+  margin: 60px 0 0 0; /*creates space above the header text*/
+  color: #aaaaaa;
+}
+h2 {
+  text-align: center;
+  margin: 0px 0 70px 0; /*you can use negative values!*/
+  color: #bbbbbb;
+}
+
+body {
+  font-family: helvetica, sans-serif;
+  margin: 0 auto; /*centers in the middle (left and right margin automatically centered*/
+  max-width: 600px; /*adjusts width of elements in body*/
+  background: #232323
+}
+div {
+  height: 200px;
+  background-size: cover;  /*solves image repetition issue*/
+  margin: 40px 0 0 0; /*creates space in between divs so they're not stacked directly ontop of each other.  When you want top and bottom to be identical,  you only need to type the two values. eg margin: 0 auto The first value controls the top and bottom, the second value controls the left and right */
+  border-radius: 12px; /*cuves the edges*/
+  color: white;
+  max-width: 600px; /*resizes the div width*/
+  position: relative; /*see bottom of p style*/
+  
+   /* To add variety to the div elements, we can use classes. Classes let you name and group HTML tags. They look like this: <tag class="name">. So <div> becomes <div class="name"> See how to format class below: */
+}
+p {
+  color: rgba(255, 255, 255, 1); /*makes text colour solid white*/
+  background-color: #000; /*graceful degradation, still looks alright for browsers that don't support gradients*/
+  background: linear-gradient(bottom rgba(0, 0, 0, 1), rgba(0,0,0,.4)); /*We want a linear gradient (as opposed to a radius one). The gradient starts at the bottom. When it starts at the bottom it's black with 100% opacity. When it ends at the top, its black with 40% opacity*/
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 1), rgba(0,0,0,.4)); /*The -webkit- and -moz- prefixes are used to ensure compatibility with older versions of WebKit-based and Mozilla-based browsers.*/
+  padding: 10px; /*adds 10px of padding to all sides of p elements. When adding the same margin or padding to all four sides you only need to use the value once. */
+  line-height: 30px; /*This lets us increase or decrease the vertical space between lines. Also refered to in this case as 'paragraph height'*/
+  text-align: justify; /*left right center justify*/
+  /*at this point the text is sitting in the middle of the background and we want it to sit at the bottom. The following code achieves that*/
+  position: absolute; /*breaks the text out of doc's regular flow*/
+  bottom: 0; /*zero pixels from the bottom of... (see bottom of div style for final line of code to achieve the look (position: relative))*/
+  margin: 0; /*sticks the text at the very bottom of the background*/
+  height: 30px; /*This puts all the div texts at a uniform height, where only the name of the dish and price can show. This works in tandem with the JS function below. Whenever someone clicks on the menu item, the full div text shows */
+  transition: height .5s; /*This creates a smooth transition between the hidre and show states. transition is a CSS property. Through this property, we're instructing the paragraph that any time the height changes, it should build a half-second delay*/
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+.first{
+  background: url("/assets/firstcourse.jpg");
+  }
+.second{
+  background: url("/assets/secondcourse.jpg");
+  }
+.dessert{
+  background: url("/assets/dessertcourse.jpg");
+  }
+.price {
+  float: right; /*text-alight: right wouldn't do anything*/
+}
+@media(max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin: 20px 0 0 0; /*Shortens the top margin between the very top and h1. Eg 0 0 0 0 would mean h1 starts right at the top of the browser*/
+    line-height: 40px; /*makes the distance smaller between h1 lines. 0px would put the lines ontop of one another*/
+  }
+  h2 {
+  margin: 20px 0 30px 0; /*changes h2 position in relation to h1 and div*/
+  font-size: 20px;
+  }
+  body {
+  margin: 0 10; /*adjusts the edges of the body*/
+  max-width: 600px;
+  }
+  div {
+    margin: 20px 12px 0 12px; /*cutting the top margin in half and adding more space to the left and right*/
+  }
+  p {
+  line-height: 24px;
+  text-align: left;
+  font-size: 20px;
+  }
+  .small {
+    font-size: 16px;
+  }
+}
+  /*The next part of the code is going to use css class and one javascript function to show or hide the item description (the div text) when you click or tap the name of a menu item*/
+  small {
+  opacity: 0; 
+  color: rgba(0, 0, 0, 0);
+}
+.show-description p { /*This means: if a paragraph is in a class called .show-description, the para should be 150px tall.*/
+  height: 150px;
+  }
+.show-description small { /*This means: any small tag in the .show-description class will be 100% opaque.*/
+  opacity: 1;
+  }
+  /*You can add the show-description to any of the classes eg. <div class="first show-description"> */
+</style>
+
+</head>
+
+<body>
+  <h1>esha's restaurant</h1>
+  <h2>A New York City Eatery</h2>
+  
+  <div class="first">  <!-- <article> is a semantic tag, it says something useful about its content. <div> is non-semantic, which means it's all-purpose. You can use it as a container for any type of content -->
+   <p>welsh onion soko <span class="price">$14</span><br /> <!-- adds a line break between text in the paragraph -->
+  <small> Mustard sierra leone bologi kale chard beet greens black-eyed pea sorrel amaranth garlic tigernut spring onion summer purslane asparagus lentil. </small> <!-- wrapping the rest of the text in <small> preserves the visual hierarchy -->
+  </p>
+  </div>
+  
+  <div class="second">
+  <p>pastrami boudin tongue <span class="price">$22</span><br /> <!-- You can use the <span> tag to make a bit of contenet display differently from the rest of the stuff. we use class to make all three elements (the prices) behave the same by giving them a shared class name. This technique allows us to isolate the price and format it differently to the other text in the div-->
+  <small>Tri-tip capicola kielbasa salami brisket chicken rump strip steak drumstick. Meatloaf chuck boudin ribeye pork jowl. Andouille bacon jowl meatloaf pork loin prosciutto bresaola.</small>
+  </p>
+  </div>
+  
+  <div class="dessert">  
+  <p>fruitcake marzipan pudding dragee <span class="price">$8</span><br />
+  <small>Lollipop tart cotton candy jelly-o carrot cake apple pie cupcake. Jelly-o bear claw ice cream candy canes.</small>
+  </p>
+  </div>
+
+  <script>
+    alert("JAvaScript Works!");
+   
+    $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+    });
+
+    /*
+    - $('div') selects all the <div>
+    - .on()is the event listener
+    - someone 'click'ing on the div is what we're listening for
+    - If the 'div' is 'clicked', then the function executes. The function tells the page what should happen when it 'hears' a click.
+    - this, means the specific div that the function was called on, ie which div was clicked. 
+    - .toggleClass is a jQuery shortcut. It adds or removes a specific class ('show-description') from a specific HTML element, depending on whether or not the class is present.
+      */
+   
+   </script> <!--When you run this, you get a pop-up alert box-->
+
+  </body>
+
+<!-- 
+<body>
+<h1>esha's restaurant</h1> -->
+
+<!--<div class="first">  Comment: <article> is a semantic tag, it says something useful about its content. <div> is non-semantic, which means it's all-purpose. You can use it as a container for any type of content 
+<h2>welsh onion soko $14</h2>
+<p>Mustard sierra leone bologi kale chard beet greens black-eyed pea sorrel amaranth garlic tigernut spring onion summer purslane asparagus lentil. </p>
+</div>
+
+<div class="second">
+<h2>pastrami boudin tongue $22</h2>
+<p>Tri-tip capicola kielbasa salami brisket chicken rump strip steak drumstick. Meatloaf chuck boudin ribeye pork jowl. Andouille bacon jowl meatloaf pork loin prosciutto bresaola.</p>
+</div>
+
+<div class="dessert">  
+<h2>fruitcake marzipan pudding dragee $8</h2>
+<p>Lollipop tart cotton candy jelly-o carrot cake apple pie cupcake. Jelly-o bear claw ice cream candy canes.</p>
+</div>
+</body>
+-->
+
+
+
+<!--Copy and pasted final code from dash:-->
+
+<!DOCTYPE html>
+
+<head>
+<script src="/assets/jquery.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
+<style>
+body {
+  font-family: helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #232323;
+}
+div {
+  height: 200px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+  margin: 0px 0 70px 0;
+}
+h1 {
+  font-family: 'Londrina Shadow', cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #aaaaaa;
+  margin: 60px 0 0 0;
+}
+h2 {
+  text-align: center;
+  color: #bbbbbb;
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(255,255,255,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 30px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px; 
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+.first{
+  background-image: url("http://dash.ga.co/assets/firstcourse.jpg");
+}
+.second{
+  background-image: url("http://dash.ga.co/assets/secondcourse.jpg");
+}
+.dessert{
+  background-image: url("http://dash.ga.co/assets/dessertcourse.jpg");
+}
+.price {
+  float: right;
+}
+small {
+  opacity: 0; 
+  color: rgba(0, 0, 0, 0);
+}
+.show-description p { 
+  height: 150px;
+  }
+.show-description small { 
+  opacity: 1;
+  color: #ffffff;
+  }
+
+
+@media(max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin: 20px 0 0 0;
+    line-height: 40px; 
+  }
+h2 {
+  margin: 20px 0 30px 0; 
+  font-size: 20px;
+}
+body {
+  margin: 0 10; 
+  max-width: 600px;
+}
+div {
+  margin: 20px 12px 0 12px;
+}
+p {
+  line-height: 24px;
+  text-align: left;
+  font-size: 20px;
+  }
+  .small {
+    font-size: 16px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+<h1 >esha's restaurant</h1>
+<h2>a New York City eatery</h2>
+<div class="first">
+  <p>welsh onion soko <span class="price">$14</span><br /><br />
+  <small>Mustard sierra leone bologi kale chard beet greens black-eyed pea sorrel amaranth garlic tigernut spring onion summer purslane asparagus lentil. </small></p>
+</div>
+
+<div class="second">
+  <p>pastrami boudin tongue <span class="price">$22</span><br /><br />
+  <small>Tri-tip capicola kielbasa salami brisket chicken rump strip steak drumstick. Meatloaf chuck boudin ribeye pork jowl. Andouille bacon jowl meatloaf pork loin prosciutto bresaola.</small></p>
+</div>
+  
+<div class="dessert">
+  <p>fruitcake marzipan pudding dragee <span class="price">$8</span><br /><br />
+  <small>Lollipop tart cotton candy jelly-o carrot cake apple pie cupcake. Jelly-o bear claw ice cream candy canes.</small></p>
+</div>
+
+<script>
+$('div').on('click', function(){
+  $(this).toggleClass('show-description');
+});
+</script>
+
+</body>
+
+
+
+.show-description p {
+  height: 150px;
+  transition: height .5s;
+  
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+.show-description p {
+  height: auto;
+}
+
+
+Original .show-description:
+
+.show-description p {
+  height: auto;
+  transition: height .5s;
+}
+
+Original media:
+
+@media(max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin: 20px 0 0 0;
+    line-height: 40px; 
+  }
+h2 {
+  margin: 20px 0 30px 0; 
+  font-size: 20px;
+}
+body {
+  margin: 0 10; 
+  max-width: 600px;
+}
+div {
+  margin: 20px 12px 0 12px;
+}
+p {
+  line-height: 24px;
+  text-align: left;
+  font-size: 20px;
+  }
+  .small {
+    font-size: 16px;
+  }
+  
+  
+}
