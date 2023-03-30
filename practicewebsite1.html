@@ -1,51 +1,68 @@
 <!DOCTYPE html>
 <head>
-  <title>Louise Raffray</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
   <style>
-    h1 {
-      text-align: center;
-      margin: 0 0 1.5em; 
-      background-color: black; 
-      display: inline-block;
-    }
-    .avatar {
-      display: block; /* display as block element to center horizontally */
-      margin: 0 auto; /* center horizontally */
-      max-width: 200px; /* set maximum width */
-      height: auto; /* adjust height accordingly */
-    }
     body {
       text-align: center;
-      background: url("/assets/matrix-gf0f87fb63_1280.png");
+      background: url("https://c4.wallpaperflare.com/wallpaper/226/63/724/matrix-background-desktop-wallpaper-preview.jpg");
       background-size: cover;
       background-position: center;
       color: white;
-      font-family: helvetica;
+      font-family: 'Source Code Pro', monospace;
     }
+    .avatar img {
+      width: 500px;
+      margin: 100px auto 20px; 
+      height: auto;
+      border-radius: 50%;
+      border: white; 
+    }
+    h1 {
+      font-size: 
+      font-family: 'Source Code Pro', monospace;
+      }
     p {
-      font-size: 22px;
-      margin: 0 0 1.5em; background-color: black; display: inline-block;
+      font-size: 20px;
     }
     input {
       border: 0;
       padding: 10px;
       font-size: 18px;
-      }
+      opacity: 70%;
+      margin: 10px auto;
+    }
     input[type="submit"] {
-      background: red;
+      background: rgb(4,148,4);
       color: white;
     }
+  @media(max-width: 500px) {
+   .avatar img {
+     margin: 20 auto;
+     max-width: 300
+  }
+  h1 {
+    font-size: 26px;
+    margin: 0 5px;
+  }
+  p {
+    display: block;
+    font-size: 15px;
+    margin: 15px 30px;
+  }
+  input {
+      font-size: 15px;
+    }
+}
   </style>
 </head>
-
 <body>
-  <img src="assets/imgbin_morpheus-neo-the-matrix-youtube-red-pill-and-blue-pill-png.png"
-   class="avatar">
-  <br>
-  <h1>Louise Raffray</h1>
-  <br>
-  <p>Hi! I'm Louise, a London-based techy. Say hello!</p>
-  <br>
+<div class="avatar">
+  <img src="https://www.looper.com/img/gallery/why-morpheuss-name-means-more-than-you-think-in-the-matrix/intro-1631737385.jpg"></div>
+  <h1>Ready to unplug from the illusion?</h1>
+  <p>Enter your email to join the journey</p>
+  <div class="emailBox">
   <input type="email" placeholder="Your email">
-  <input type="submit">
+  <input type="submit"> </div>
 </body>
