@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+  <link href="/normalize.css" rel="stylesheet"> 
+  <style>
+    header {
+      text-align: center; /*aligns header to the centre of page*/
+      background: url("http://dash.ga.co/assets/jeff-bg.png"); /* background image link for header background*/
+      background-size: cover; /*makes sure background covers the space. Prevents the picture repeating itself*/
+      color: white; /* text color set to white*/
+      /*font-size: 80px; this wouldn't work at changing the size of "Jeff's Blog" because it would change all the text in <header> to that size. You need to make a specific edit to <h1> */
+    }
+    a { /* a refers to specific linked titles*/
+      color: white;
+    }
+    h1 {
+      font-size: 70px;
+    }
+    img {
+      margin: 40px 0px 0px 0px; /* Up, right, down, left. Margin is the space outside an element, padding adds space from within an element*/
+      border: 7px solid white;
+      border-radius: 20px; /*this curves the edges of the image*/
+    }
+    ul {
+      padding: 10px; /*gives more of a black border to ul menu bar*/
+      background: #F00; /*anatomy of a Hex Colour Code: Firtst character (F) controls the amount of redness. It ranges from 0 (no red) to F (100% red). The second character controls the amount of greenness. Just like the first character it ranges from 0 to F. The third character controls the amount of blueness. Together they are RGB. Alternatively we can write it as background: rgba(0,0,0,0.5); the last digit (transparency) uses a 0-1 scale. rgba(255, 255, 255, 1) makes white (255 is max value) */
+    }
+    li {
+      display: inline; /*inline= links display side by side*/
+      padding: 0px 10px 0px 10px; /*top, right, down, left. Therefore adding 10px to the left and right of the strings*/
+    }
+    article { /*we grouped the blog posts in <article> so we can format them all at the same time*/
+      max-width: 500px; /*Resizing tool for text and images. using max-width instead of width means our article elements can be smaller than 500px but not larger. This centers the article for different sized screens. Solves the 'this isn't looking good on the phone' problem.*/ 
+      padding: 20px;
+      margin: 0 auto; /*Learn this, good for images and text etc. It centers the element automatically. It sets 0 margin to the top and bottom and auto margin to the left and right, creating a centered effect.*/
+      }
+  @media (max-width: 500px) { /*Note we use : not =. If the browser size is less than 500px then the code inside {} will run. The media query allows us to set CSS styles that only activate when the browser is a certain width.*/
+      h1 {
+        font-size: 36px; /*Heading font should be smaller when the browser is small eg on a phone*/ 
+      }
+      li { 
+        display: block; /*on a phone browser, the links should sit on top of one another rather than inline.*/
+        padding: 5px; /*adds space in between the navigation links so they aren't bunched together*/
+      }
+      body {
+        background: red;
+        color: white
+      }
+      /*FYI <button>Like</button> creates a button with Like written in it. <script></script> is the way to include JavaScript into the html*/
+     }
+  </style>
+</head>
+
+<body>
+    <header>
+      <img src="/assets/jeff.png">
+      <h1>Jeff's Blog</h1>
+      <ul>  <!-- Creates a menu bar. Stands for unordered list. -->
+         <!-- Together the <ul> and <li> (link) tags create bullet points. Add <a href="url">Text Link Is Attatched To</a> to link to another page -->
+        <li><a href="#">About Me</a></li>  <!--  -->
+        <li><a href="#">Best Poems</a></li>
+        <li><a href="#">Worst Poems</a></li>
+      </ul>
+    </header>
+
+<article>  
+    <h2>VHS umami pop-up trust fund</h2>
+    <p>Marfa church-key kitsch bicycle rights, 8-bit mixtape cardigan gentrify Echo Park. Street art swag brunch, next level roof party Schlitz hella organic keffiyeh selfies. You probably haven't heard of them polaroid hashtag +1, meggings biodiesel Portland High Life cray tumblr retro.</p>
+    <button>Like</button> 
+  </article>
+  
+  <article>
+    <h2>Sartorial synth Echo Park, roof party</h2>
+    <p>chambray you probably haven't heard of them pour-over viral selvage umami skateboard VHS post-ironic selfies. Wes Anderson gentrify fanny pack twee, bicycle rights bitters blog keffiyeh plaid flannel. Tonx irony cliche sustainable mlkshk bitters. Four loko leggings chambray Vice.</p>
+     <button>Like</button>
+  </article>
+  
+  <article>
+    <h2>Forage food truck keytar master cleanse</h2>
+    <p>ethical thundercats sustainable locavore quinoa Neutra. Aesthetic tacky sweater single-origin coffee, bicycle rights organic lo-fi street art american apparel ennui four loko ethnic Brooklyn small batch. Forage YOLO polaroid</p>
+     <button>Like</button>
+  </article>
+  <script>
+    $("button").on("click", function() {
+      alert("clicked!")
+    });
+  </script>
+  </body>
+
+<!-- 
+
+    $("button").on("click", function() {
+      alert("clicked!")
+    });
+
+How this works:
+
+The syntax for using the .on() is as follows: 
+    
+    $(selector).on(event, function)
+
+- $("button"): This is a jQuery object that selects the HTML elements we want to attatch the event handler to. The selector goes inside ("") and has a $ in front. $(""). Eg we could select $("h1").
+
+- .on(): The syntax for using the .on() is as follows: $(selector).on(event, function). 
+
+
+- $() is the selector that chooses the element to listen to. In this case, it's "button"
+- .on() function sets up an event listener for the element we selected
+- "click" is the type of event we are lisening for
+- function (): the action to take when the event happens
+
+$ is a jQuery
+ -->
+  
+ <!--  -->
